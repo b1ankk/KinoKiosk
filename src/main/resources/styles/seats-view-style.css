@@ -1,0 +1,19 @@
+.seatsRoot{
+    -fx-border-width: 2px;
+    -fx-border-color: lightgray;
+    -fx-border-style: none;
+
+    -fx-background-color: white;
+}
+
+.screen{
+    -fx-stroke-width: 2px;
+    -fx-stroke: darkgray;
+    -fx-stroke-type: centered;
+    -fx-stroke-line-cap: square;
+
+    -fx-fill: lightgray;
+
+    -fx-background-radius: 0;
+
+}

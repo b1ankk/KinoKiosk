@@ -1,0 +1,29 @@
+.chair-button {
+    -fx-background-color: /*-fx-box-border,*/ white;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 0;
+    -fx-padding: 1;
+    -fx-border-style: none;
+    -fx-border-width: 2px;
+    -fx-border-color: lightgray;
+    -fx-pref-height: 32px;
+    -fx-pref-width: 32px;
+    -fx-graphic: url('/icons/seat_gray_32.png');
+
+}
+
+.chair-button:selected {
+    -fx-background-color: #d2eed2;
+    -fx-border-color: lightgreen;
+    -fx-pref-height: 32px;
+    -fx-pref-width: 32px;
+    -fx-graphic: url('/icons/seat_green_32.png');
+}
+
+.chair-button:disabled {
+    -fx-background-color: lightpink;
+    -fx-pref-height: 32px;
+    -fx-pref-width: 32px;
+    -fx-border-color: indianred;
+    -fx-graphic: url('/icons/seat_red_32.png');
+}
