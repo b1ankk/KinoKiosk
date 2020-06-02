@@ -11,19 +11,20 @@ public class KioskController
     private BorderPane rootBorderPane;
     
     @FXML
-    private ListView roomsView;
+    private ListView roomsListView;
+    
+    private Room activeRoom;
+    
+    
     
     @FXML
     private void initialize()
     {
-        SeatsView seatsView = new SeatsView(20, 8);
+        activeRoom = new Room(12, 6);
+        activeRoom.fill();
+        SeatsView seatsView = new SeatsView(activeRoom);
         rootBorderPane.setCenter(seatsView);
         
-    }
-    
-    public double getRootWidth()
-    {
-        return rootBorderPane.getWidth();
     }
     
 }

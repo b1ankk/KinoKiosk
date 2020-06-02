@@ -39,7 +39,7 @@
         </MenuBar>
     </top>
     <left>
-        <ListView fx:id="roomsView" maxHeight="1.7976931348623157E308" prefHeight="200.0"
+        <ListView fx:id="roomsListView" maxHeight="1.7976931348623157E308" prefHeight="200.0"
                   prefWidth="180.0" BorderPane.alignment="CENTER"
                   stylesheets="/styles/no-focus-border.css"/>
     </left>

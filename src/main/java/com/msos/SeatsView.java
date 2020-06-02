@@ -1,5 +1,7 @@
 package com.msos;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,13 +22,14 @@ public class SeatsView extends StackPane implements Initializable
     @FXML
     private GridPane seatsGrid;
     
-    private ObservableList<ObservableList<Seat>> seatsList;
+//    private ObservableList<ObservableList<Seat>> seatsList;
+    private Room room;
     
-    public SeatsView(ObservableList<ObservableList<Seat>> seatsList)
+    public SeatsView(Room room)
     {
         super();
         
-        this.seatsList = seatsList;
+        this.room = room;
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/seats.fxml"));
         loader.setRoot(this);
@@ -46,10 +49,9 @@ public class SeatsView extends StackPane implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        
         ObservableList<ColumnConstraints> columnConstraintsList = seatsGrid.getColumnConstraints();
         columnConstraintsList.clear();
-        for (int i = 0; i < ; ++i)
+        for (int i = 0; i < room.getColumnsCount(); ++i)
         {
             ColumnConstraints cc = new ColumnConstraints();
             columnConstraintsList.add(cc);
@@ -57,29 +59,60 @@ public class SeatsView extends StackPane implements Initializable
         
         ObservableList<RowConstraints> rowConstraintsList = seatsGrid.getRowConstraints();
         rowConstraintsList.clear();
-        for (int i = 0; i < rows; ++i)
+    
+        for (int i = 0; i < room.getRowsCount(); ++i)
         {
             RowConstraints rc = new RowConstraints();
             rowConstraintsList.add(rc);
         }
-
-        for (int i = 0; i < columns; ++i)
-        {
-            if (i < columns / 2 - 1  ||  i >= columns / 2 + 1)
-            
-            for (int j = 0; j < rows; ++j)
-            {
-                ToggleButton tb = new ToggleButton();
-                tb.getStylesheets().add("/styles/chair-button.css");
-                tb.getStyleClass().add("chair-button");
-                seatsGrid.add(tb, i, j);
     
-                if (Math.random() < 0.33)
-                    tb.setDisable(true);
-            }
-            else
+        for (int i = 0; i < room.getColumnsCount(); ++i)
+        {
+            for (int j = 0; j < room.getRowsCount(); ++j)
             {
-                seatsGrid.getColumnConstraints().get(i).setMinWidth(PREF_COLUMN_WIDTH);
+                Seat seat;
+                if ((seat = room.getSeat(i, j)) != null)
+                {
+                    ToggleButton tb = new ToggleButton();
+                    tb.getStylesheets().add("/styles/chair-button.css");
+                    tb.getStyleClass().add("chair-button");
+    
+                    switch (seat.getState())
+                    {
+                        case EMPTY -> {tb.setSelected(false); tb.setDisable(false);}
+                        case CHOSEN -> {tb.setSelected(true); tb.setDisable(false);}
+                        case OCCUPIED -> {tb.setSelected(false); tb.setDisable(true);}
+                    }
+                    
+                    tb.selectedProperty().addListener(
+                        (selectedProperty, oldValue, newValue) ->
+                        {
+                            if (newValue)
+                                seat.setState(Seat.State.CHOSEN);
+                            else
+                                seat.setState(Seat.State.EMPTY);
+                        }
+                    );
+                    
+                    tb.disabledProperty().addListener(
+                        (disabledProperty, oldValue, newValue) ->
+                        {
+                            if (newValue)
+                                seat.setState(Seat.State.OCCUPIED);
+                            else if (tb.isSelected())
+                                seat.setState(Seat.State.CHOSEN);
+                            else
+                                seat.setState(Seat.State.EMPTY);
+                        }
+                    );
+                    
+                    seatsGrid.add(tb, i, j);
+                }
+                else
+                {
+                    seatsGrid.getColumnConstraints().get(i).setMinWidth(PREF_COLUMN_WIDTH);
+                }
+
             }
         }
         
@@ -87,12 +120,12 @@ public class SeatsView extends StackPane implements Initializable
     
     public int getRows()
     {
-        return rows;
+        return seatsGrid.getRowCount();
     }
     
     public int getColumns()
     {
-        return columns;
+        return seatsGrid.getColumnCount();
     }
     
     public ObservableList<Node> getSeatButtons()

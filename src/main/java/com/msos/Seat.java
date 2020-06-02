@@ -32,4 +32,9 @@ public class Seat
     {
         return state;
     }
+    
+    void setState(State state)
+    {
+        this.state.set(state);
+    }
 }
