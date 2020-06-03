@@ -3,24 +3,28 @@ package com.msos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.LinkedList;
+
 public class Room
 {
     private int columns;
     private int rows;
     
     private ObservableList<ObservableList<Seat>> seats;
+    private ObservableList<Seat> selectedSeats;
     
-    public Room(int columns, int rows)
+    public Room(int rows, int columns)
     {
         if (columns <= 0  ||  rows <= 0)
             throw new IllegalArgumentException(
-                "columns and rows sizes must be greater than zero:" +
+                "column and row amounts must be greater than zero:" +
                 " columns=" + columns + " rows=" + rows
             );
         
         this.columns = columns;
         this.rows = rows;
         this.seats = FXCollections.observableArrayList();
+        this.selectedSeats = FXCollections.observableList(new LinkedList<>());
         
         for (int y = 0; y < rows; ++y)
         {
@@ -38,14 +42,14 @@ public class Room
         {
             for (int x = 0; x < columns; ++x)
             {
-                Seat seat = seats.get(y).get(x);
-                if (seat != null)
+                Seat checkSeat = seats.get(y).get(x);
+                if (checkSeat != null)
                     throw new UnsupportedOperationException("Room is not empty, cannot fill." +
-                                                            " Seat encountered: " + seat +
+                                                            " Seat encountered: " + checkSeat +
                                                             ", row=" + y + ", column=" + x
                     );
-                
-                seats.get(y).set(x, new Seat());
+                Seat seat = new Seat(y, x);
+                addSeat(y, x, seat);
             }
         }
     }
@@ -61,7 +65,7 @@ public class Room
         return rows;
     }
     
-    public Seat getSeat(int column, int row)
+    public Seat getSeat(int row, int column)
     {
         try
         {
@@ -78,5 +82,27 @@ public class Room
         }
     }
     
+    public ObservableList<Seat> getSelectedSeats()
+    {
+        return selectedSeats;
+    }
     
+    public void addSeat(int row, int column, Seat seat)
+    {
+        if (getSeat(row, column) != null)
+            throw new UnsupportedOperationException("Place already occupied: row=" + row + " column=" + column);
+        
+        seat.stateProperty().addListener(
+            (observableValue, oldState, newState) ->
+            {
+                if (newState == Seat.State.SELECTED && oldState != Seat.State.SELECTED)
+                    selectedSeats.add(seat);
+                else if (newState != Seat.State.SELECTED && oldState == Seat.State.SELECTED)
+                    selectedSeats.remove(seat);
+                System.out.println(selectedSeats);
+            }
+        );
+        
+        seats.get(row).set(column, seat);
+    }
 }

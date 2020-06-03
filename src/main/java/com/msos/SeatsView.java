@@ -1,7 +1,5 @@
 package com.msos;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,7 +69,7 @@ public class SeatsView extends StackPane implements Initializable
             for (int j = 0; j < room.getRowsCount(); ++j)
             {
                 Seat seat;
-                if ((seat = room.getSeat(i, j)) != null)
+                if ((seat = room.getSeat(j, i)) != null)
                 {
                     ToggleButton tb = new ToggleButton();
                     tb.getStylesheets().add("/styles/chair-button.css");
@@ -80,7 +78,7 @@ public class SeatsView extends StackPane implements Initializable
                     switch (seat.getState())
                     {
                         case EMPTY -> {tb.setSelected(false); tb.setDisable(false);}
-                        case CHOSEN -> {tb.setSelected(true); tb.setDisable(false);}
+                        case SELECTED -> {tb.setSelected(true); tb.setDisable(false);}
                         case OCCUPIED -> {tb.setSelected(false); tb.setDisable(true);}
                     }
                     
@@ -88,7 +86,7 @@ public class SeatsView extends StackPane implements Initializable
                         (selectedProperty, oldValue, newValue) ->
                         {
                             if (newValue)
-                                seat.setState(Seat.State.CHOSEN);
+                                seat.setState(Seat.State.SELECTED);
                             else
                                 seat.setState(Seat.State.EMPTY);
                         }
@@ -100,7 +98,7 @@ public class SeatsView extends StackPane implements Initializable
                             if (newValue)
                                 seat.setState(Seat.State.OCCUPIED);
                             else if (tb.isSelected())
-                                seat.setState(Seat.State.CHOSEN);
+                                seat.setState(Seat.State.SELECTED);
                             else
                                 seat.setState(Seat.State.EMPTY);
                         }

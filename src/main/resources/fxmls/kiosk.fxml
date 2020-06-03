@@ -48,9 +48,10 @@
 
     </center>
     <right>
-        <ListView fx:id="selectedSeatsView" maxHeight="1.7976931348623157E308" prefHeight="200.0"
+        <ListView fx:id="selectedSeatsListView" maxHeight="1.7976931348623157E308"
+                  prefHeight="200.0"
                   prefWidth="180.0" BorderPane.alignment="CENTER"
-                  stylesheets="/styles/no-focus-border.css"/>
+                  />
     </right>
     <bottom>
         <ButtonBar fx:id="bottomButtonBar" prefHeight="40.0" BorderPane.alignment="CENTER"
