@@ -1,10 +1,16 @@
 package com.msos;
 
+import com.msos.ticket_menu.TicketMenuStage;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class KioskController
@@ -19,6 +25,11 @@ public class KioskController
     @FXML
     private ListView<SelectedSeatEntry> selectedSeatsListView;
     
+    @FXML
+    private Button buyTicketsButton;
+    
+    
+    private Stage stage;
     
     private Room activeRoom;
     
@@ -63,7 +74,28 @@ public class KioskController
         
         rootBorderPane.setCenter(seatsView);
         
-        roomsListView.getItems().add(new SelectedSeatEntry());
     }
     
+    
+    @FXML
+    private void openTicketsMenu() throws IOException
+    {
+        TicketMenuStage ticketMenu = new TicketMenuStage(activeRoom.getSelectedSeats());
+        ticketMenu.initModality(Modality.WINDOW_MODAL);
+        ticketMenu.initOwner(stage);
+        ticketMenu.setTitle("BUY TICKETS");
+        ticketMenu.getIcons().addAll(stage.getIcons());
+        ticketMenu.show();
+    }
+    
+    
+    public Stage getStage()
+    {
+        return stage;
+    }
+    
+    public void setStage(Stage stage)
+    {
+        this.stage = stage;
+    }
 }

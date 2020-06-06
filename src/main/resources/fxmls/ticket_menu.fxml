@@ -9,7 +9,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
       prefHeight="600.0" prefWidth="400.0"
       spacing="10.0"
-      fx:controller="com.msos.TicketMenuController"
+      fx:controller="com.msos.ticket_menu.TicketMenuController"
 >
     <children>
         <ListView fx:id="ticketListView" focusTraversable="false"

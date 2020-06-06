@@ -7,11 +7,19 @@ import java.util.LinkedList;
 
 public class Room
 {
+    private int number;
+    
     private int columns;
     private int rows;
     
     private ObservableList<ObservableList<Seat>> seats;
     private ObservableList<Seat> selectedSeats;
+    
+    public Room(int number, int rows, int columns)
+    {
+        this(rows, columns);
+        this.number = number;
+    }
     
     public Room(int rows, int columns)
     {
@@ -54,6 +62,10 @@ public class Room
         }
     }
     
+    public int getNumber()
+    {
+        return number;
+    }
     
     public int getColumnsCount()
     {
