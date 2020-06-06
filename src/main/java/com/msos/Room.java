@@ -1,6 +1,9 @@
 package com.msos;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.util.LinkedList;
@@ -11,6 +14,8 @@ public class Room
     
     private int columns;
     private int rows;
+    
+    private BooleanProperty empty;
     
     private ObservableList<ObservableList<Seat>> seats;
     private ObservableList<Seat> selectedSeats;
@@ -33,6 +38,11 @@ public class Room
         this.rows = rows;
         this.seats = FXCollections.observableArrayList();
         this.selectedSeats = FXCollections.observableList(new LinkedList<>());
+        this.empty = new SimpleBooleanProperty(selectedSeats.isEmpty());
+        
+        selectedSeats.addListener(
+            (ListChangeListener<Seat>) change -> empty.set(selectedSeats.isEmpty())
+        );
         
         for (int y = 0; y < rows; ++y)
         {
@@ -116,5 +126,15 @@ public class Room
         );
         
         seats.get(row).set(column, seat);
+    }
+    
+    public boolean isEmpty()
+    {
+        return empty.get();
+    }
+    
+    public BooleanProperty emptyProperty()
+    {
+        return empty;
     }
 }

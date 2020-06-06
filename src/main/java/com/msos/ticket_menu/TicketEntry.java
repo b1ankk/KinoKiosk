@@ -2,7 +2,7 @@ package com.msos.ticket_menu;
 
 import com.msos.Seat;
 import javafx.beans.InvalidationListener;
-import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +28,8 @@ public class TicketEntry extends GridPane
     
     @FXML
     private ComboBox<TicketType> ticketOptions;
+    
+    private DoubleProperty ticketPrice;
     
     private Seat seat;
     private ObservableList<TicketType> ticketOptionsList;
@@ -60,14 +62,28 @@ public class TicketEntry extends GridPane
     {
         ticketOptions.setItems(ticketOptionsList);
         ticketOptions.getSelectionModel().selectFirst();
-        priceValueLabel.setText(ticketOptions.getValue().getPrice() + "");
 
+        ticketPrice = new SimpleDoubleProperty(ticketOptions.getValue().getPrice());
         ticketOptions.valueProperty().addListener(
             (observableValue, oldType, newType) ->
-                priceValueLabel.setText(newType.getPrice() + "")
+                ticketPrice.set(newType.getPrice())
         );
 
+        priceValueLabel.textProperty().bind(
+            ticketPrice.asString()
+        );
+        
         rowNumberLabel.textProperty().bind(seat.rowNumberProperty().asString());
         seatNumberLabel.textProperty().bind(seat.seatNumberProperty().asString());
+    }
+    
+    public double getTicketPrice()
+    {
+        return ticketPrice.get();
+    }
+    
+    public DoubleProperty ticketPriceProperty()
+    {
+        return ticketPrice;
     }
 }

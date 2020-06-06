@@ -75,13 +75,8 @@ public class SeatsView extends StackPane implements Initializable
                     tb.getStylesheets().add("/styles/chair-button.css");
                     tb.getStyleClass().add("chair-button");
     
-                    switch (seat.getState())
-                    {
-                        case EMPTY -> {tb.setSelected(false); tb.setDisable(false);}
-                        case SELECTED -> {tb.setSelected(true); tb.setDisable(false);}
-                        case OCCUPIED -> {tb.setSelected(false); tb.setDisable(true);}
-                    }
-                    
+                    assignButtonState(tb, seat);
+    
                     tb.selectedProperty().addListener(
                         (selectedProperty, oldValue, newValue) ->
                         {
@@ -104,6 +99,16 @@ public class SeatsView extends StackPane implements Initializable
                         }
                     );
                     
+                    seat.stateProperty().addListener(
+                        (observableValue, oldState, newState) ->
+                        {
+                            if (newState != oldState)
+                            {
+                                assignButtonState(tb, seat);
+                            }
+                        }
+                    );
+                    
                     seatsGrid.add(tb, i, j);
                 }
                 else
@@ -114,6 +119,16 @@ public class SeatsView extends StackPane implements Initializable
             }
         }
         
+    }
+    
+    private void assignButtonState(ToggleButton tb, Seat seat)
+    {
+        switch (seat.getState())
+        {
+            case EMPTY -> {tb.setSelected(false); tb.setDisable(false);}
+            case SELECTED -> {tb.setSelected(true); tb.setDisable(false);}
+            case OCCUPIED -> {tb.setSelected(false); tb.setDisable(true);}
+        }
     }
     
     public int getRows()

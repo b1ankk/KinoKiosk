@@ -74,6 +74,10 @@ public class KioskController
         
         rootBorderPane.setCenter(seatsView);
         
+        buyTicketsButton.disableProperty().bind(
+            activeRoom.emptyProperty()
+        );
+        
     }
     
     

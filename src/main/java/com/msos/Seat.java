@@ -6,12 +6,13 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Seat
 {
-    enum State
+    public enum State
     {
         OCCUPIED,
         EMPTY,
         SELECTED
     }
+    
     
     private final SimpleObjectProperty<Seat.State> state = new SimpleObjectProperty<>();
     
@@ -20,6 +21,8 @@ public class Seat
     private final ReadOnlyIntegerProperty seatNumber;
     
     private SelectedSeatEntry selectedEntry;
+    
+    
     
     public Seat()
     {
@@ -38,6 +41,8 @@ public class Seat
         this.seatNumber = new ReadOnlyIntegerWrapper(seatNumber);
     }
     
+    
+    
     public State getState()
     {
         return state.get();
@@ -48,7 +53,7 @@ public class Seat
         return state;
     }
     
-    void setState(State state)
+    public void setState(State state)
     {
         this.state.set(state);
     }
@@ -64,6 +69,7 @@ public class Seat
         return rowNumber;
     }
     
+    
     public int getSeatNumber()
     {
         return seatNumber.get();
@@ -74,6 +80,7 @@ public class Seat
         return seatNumber;
     }
     
+    
     public SelectedSeatEntry getSelectedEntry()
     {
         if (selectedEntry == null)
@@ -81,4 +88,6 @@ public class Seat
             
         return selectedEntry;
     }
+    
+    
 }

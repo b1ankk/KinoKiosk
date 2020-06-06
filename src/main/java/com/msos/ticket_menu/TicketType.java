@@ -2,19 +2,19 @@ package com.msos.ticket_menu;
 
 public enum TicketType
 {
-    ADULT(34.99f),
-    CHILD(20.59f),
-    STUDENT(26.99f),
-    SENIOR(23.89f);
+    ADULT(34.99),
+    CHILD(20.59),
+    STUDENT(26.99),
+    SENIOR(23.89);
     
-    private float price;
+    private double price;
     
-    TicketType(float price)
+    TicketType(double price)
     {
         this.price = price;
     }
     
-    public float getPrice()
+    public double getPrice()
     {
         return price;
     }
