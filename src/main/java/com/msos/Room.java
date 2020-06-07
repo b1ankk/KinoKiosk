@@ -1,19 +1,23 @@
 package com.msos;
 
+import com.msos.serialization.RoomPojo;
+import com.msos.serialization.SeatPojo;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Room
 {
     private int number;
     
-    private int columns;
     private int rows;
+    private int columns;
     
     private BooleanProperty empty;
     
@@ -46,11 +50,11 @@ public class Room
         
         for (int y = 0; y < rows; ++y)
         {
-            ObservableList<Seat> seatColumnList = FXCollections.observableArrayList();
-            seats.add(seatColumnList);
+            ObservableList<Seat> seatRowList = FXCollections.observableArrayList();
+            seats.add(seatRowList);
             
             for (int x = 0; x < columns; ++x)
-                seatColumnList.add(null);
+                seatRowList.add(null);
         }
     }
     
@@ -124,8 +128,10 @@ public class Room
                 System.out.println(selectedSeats);
             }
         );
-        
         seats.get(row).set(column, seat);
+        
+        if (seat.getState() == Seat.State.SELECTED)
+            selectedSeats.add(seat);
     }
     
     public boolean isEmpty()
@@ -137,4 +143,64 @@ public class Room
     {
         return empty;
     }
+    
+    
+    
+    public static RoomPojo toPojo(Room room)
+    {
+        List<List<SeatPojo>> seats = new ArrayList<>();
+        for (int i = 0; i < room.rows; ++i)
+            seats.add(new ArrayList<>());
+        
+        List<SeatPojo> selected = new ArrayList<>();
+        
+        for (int j = 0; j < room.rows; ++j)
+            for (int i = 0; i < room.columns; ++i)
+            {
+                SeatPojo seatPojo = Seat.toPojo(
+                    room.getSeat(j, i)
+                );
+                seats.get(j).add(seatPojo);
+                
+                if (seatPojo.getState() == Seat.State.SELECTED)
+                    selected.add(seatPojo);
+            }
+        
+        return new RoomPojo(
+            room.number,
+            room.rows,
+            room.columns,
+            room.empty.get(),
+            seats,
+            selected
+        );
+    }
+    
+    public static Room fromPojo(RoomPojo roomPojo)
+    {
+        Room room = new Room(
+            roomPojo.getNumber(),
+            roomPojo.getRows(),
+            roomPojo.getColumns()
+        );
+
+        for (int i = 0; i < roomPojo.getRows(); ++i)
+            for (int j = 0; j < roomPojo.getColumns(); ++j)
+                room.addSeat(
+                    i, j,
+                    Seat.fromPojo(
+                        roomPojo.getSeats().get(i).get(j)
+                    )
+                );
+
+        return room;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

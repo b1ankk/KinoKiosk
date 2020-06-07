@@ -1,5 +1,6 @@
 package com.msos;
 
+import com.msos.serialization.SeatPojo;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -88,6 +89,26 @@ public class Seat
             
         return selectedEntry;
     }
+    
+    
+    public static SeatPojo toPojo(Seat seat)
+    {
+        return new SeatPojo(
+              seat.state.get(),
+              seat.rowNumber.get(),
+              seat.seatNumber.get()
+        );
+    }
+    
+    public static Seat fromPojo(SeatPojo seatPojo)
+    {
+        return new Seat(
+            seatPojo.getState(),
+            seatPojo.getRowNumber(),
+            seatPojo.getSeatNumber()
+        );
+    }
+    
     
     
 }

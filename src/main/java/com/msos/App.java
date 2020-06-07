@@ -43,7 +43,7 @@ public class App extends Application
         stage.show();
         stage.sizeToScene();
         
-        // ADD TEST PASSWORDS
+        // TODO REMOVE TEST PASSWORDS
         PasswordManager.addPassword("user", "1234");
         
         stage.setOnCloseRequest(

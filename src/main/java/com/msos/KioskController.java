@@ -39,8 +39,13 @@ public class KioskController
     private void initialize()
     {
         activeRoom = new Room(6, 12);
-        activeRoom.fill();
+        activeRoom.addSeat(0, 0, new Seat(Seat.State.SELECTED, 0, 0));
+//        activeRoom.fill();
         SeatsView seatsView = new SeatsView(activeRoom);
+        
+        activeRoom.getSelectedSeats().forEach(
+            seat -> selectedSeatsListView.getItems().add(seat.getSelectedEntry())
+        );
         
         activeRoom.getSelectedSeats().addListener(
             (ListChangeListener<? super Seat>) change ->
