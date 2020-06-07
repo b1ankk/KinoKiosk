@@ -1,5 +1,7 @@
 package com.msos.security;
 
+import com.msos.serialization.Cluster;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
@@ -15,10 +17,24 @@ public class PasswordManager
 {
     private static final Map<String, Password> userPasswords = new HashMap<>();
     
-    
     public static Map<String, Password> getUnmodifiableUserPasswords()
     {
         return Collections.unmodifiableMap(userPasswords);
+    }
+    
+    public static void retrievePasswords(Cluster cluster)
+    {
+        userPasswords.putAll(cluster.getPasswords());
+    }
+    
+    public static void removePassword(String user)
+    {
+        userPasswords.remove(user);
+    }
+    
+    public static void removeAllPasswords()
+    {
+        userPasswords.clear();
     }
     
     public static void addPassword(String user, String passwordRaw) throws PasswordHashingException

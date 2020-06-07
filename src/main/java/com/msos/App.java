@@ -19,6 +19,8 @@ import java.util.List;
 
 public class App extends Application
 {
+    public final static String SAVE_FILE_EXTENSION = ".json"; // extension WITH a dot before
+    
     private final String UI_PATH = "/fxmls/kiosk.fxml";
     private final String ICO_PATH = "/icons/ticket_gimp.ico";
     

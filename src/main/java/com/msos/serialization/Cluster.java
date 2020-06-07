@@ -15,6 +15,11 @@ public class Cluster
         return rooms;
     }
     
+    public Map<String, Password> getPasswords()
+    {
+        return Collections.unmodifiableMap(passwords);
+    }
+    
     public void setPasswords(Map<String, Password> passwords)
     {
         this.passwords = passwords;
