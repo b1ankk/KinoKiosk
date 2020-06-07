@@ -12,7 +12,6 @@ public class RoomPojo
     private boolean empty;
     
     private List<List<SeatPojo>> seats;
-    private List<SeatPojo> selectedSeats;
     
     public RoomPojo()
     {
@@ -77,15 +76,5 @@ public class RoomPojo
     public void setSeats(List<List<SeatPojo>> seats)
     {
         this.seats = seats;
-    }
-    
-    public List<SeatPojo> getSelectedSeats()
-    {
-        return selectedSeats;
-    }
-    
-    public void setSelectedSeats(List<SeatPojo> selectedSeats)
-    {
-        this.selectedSeats = selectedSeats;
     }
 }

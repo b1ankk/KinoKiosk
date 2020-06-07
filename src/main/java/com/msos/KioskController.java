@@ -1,7 +1,9 @@
 package com.msos;
 
+import com.msos.security.PasswordManager;
+import com.msos.serialization.Cluster;
+import com.msos.serialization.DefaultSerializer;
 import com.msos.ticket_menu.TicketMenuStage;
-import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 public class KioskController
@@ -34,13 +37,11 @@ public class KioskController
     private Room activeRoom;
     
     
-    
     @FXML
     private void initialize()
     {
         activeRoom = new Room(6, 12);
-        activeRoom.addSeat(0, 0, new Seat(Seat.State.SELECTED, 0, 0));
-//        activeRoom.fill();
+        activeRoom.fill();
         SeatsView seatsView = new SeatsView(activeRoom);
         
         activeRoom.getSelectedSeats().forEach(

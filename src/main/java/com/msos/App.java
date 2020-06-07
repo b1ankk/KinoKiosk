@@ -29,6 +29,9 @@ public class App extends Application
     {
         this.mainStage = stage;
         
+        // TODO REMOVE TEST PASSWORDS
+        PasswordManager.addPassword("user", "1234");
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource(UI_PATH));
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/ticket_menu.fxml"));
         Parent root = loader.load();
@@ -42,9 +45,6 @@ public class App extends Application
         stage.setScene(scene);
         stage.show();
         stage.sizeToScene();
-        
-        // TODO REMOVE TEST PASSWORDS
-        PasswordManager.addPassword("user", "1234");
         
         stage.setOnCloseRequest(
             this::showExitPrompt

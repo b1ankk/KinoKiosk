@@ -2,10 +2,7 @@ package com.msos.serialization;
 
 import com.msos.security.Password;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Cluster
 {
@@ -13,9 +10,9 @@ public class Cluster
     private Map<String, Password> passwords = new HashMap<>();
     
     
-    public Map<String, Password> getPasswords()
+    public List<RoomPojo> getRooms()
     {
-        return passwords;
+        return rooms;
     }
     
     public void setPasswords(Map<String, Password> passwords)

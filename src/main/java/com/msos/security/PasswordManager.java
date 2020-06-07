@@ -6,15 +6,20 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PasswordManager
 {
-    private static final Map<String, Password> usersPasswords = new HashMap<>();
+    private static final Map<String, Password> userPasswords = new HashMap<>();
     
+    
+    public static Map<String, Password> getUnmodifiableUserPasswords()
+    {
+        return Collections.unmodifiableMap(userPasswords);
+    }
     
     public static void addPassword(String user, String passwordRaw) throws PasswordHashingException
     {
@@ -25,12 +30,12 @@ public class PasswordManager
         
         Password password = new Password(veryTastySalt, hash);
         
-        usersPasswords.put(user, password);
+        userPasswords.put(user, password);
     }
     
     public static boolean verify(String user, String passwordRaw) throws PasswordVerificationException
     {
-        Password password = usersPasswords.get(user);
+        Password password = userPasswords.get(user);
         if (password == null)
             return false;
         
