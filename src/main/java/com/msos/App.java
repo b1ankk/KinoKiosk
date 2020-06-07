@@ -1,5 +1,7 @@
 package com.msos;
 
+import com.msos.security.PasswordManager;
+import com.msos.security.PasswordPromptStage;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import net.sf.image4j.codec.ico.ICODecoder;
 
 import java.awt.image.BufferedImage;
@@ -19,9 +22,13 @@ public class App extends Application
     private final String UI_PATH = "/fxmls/kiosk.fxml";
     private final String ICO_PATH = "/icons/ticket_gimp.ico";
     
+    private Stage mainStage;
+    
     @Override
     public void start(Stage stage) throws Exception
     {
+        this.mainStage = stage;
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource(UI_PATH));
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/ticket_menu.fxml"));
         Parent root = loader.load();
@@ -35,6 +42,13 @@ public class App extends Application
         stage.setScene(scene);
         stage.show();
         stage.sizeToScene();
+        
+        // ADD TEST PASSWORDS
+        PasswordManager.addPassword("user", "1234");
+        
+        stage.setOnCloseRequest(
+            this::showExitPrompt
+        );
     }
     
     private List<Image> loadIcons()
@@ -58,4 +72,14 @@ public class App extends Application
         
         return images;
     }
+    
+    private void showExitPrompt(WindowEvent e)
+    {
+        PasswordPromptStage pps = new PasswordPromptStage(mainStage);
+        pps.show();
+        e.consume();
+    }
+    
+    
+    
 }
