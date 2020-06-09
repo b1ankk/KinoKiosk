@@ -1,11 +1,11 @@
-package com.msos;
+package com.msos.seat_menu;
 
+import com.msos.Room;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -20,7 +20,6 @@ public class SeatsView extends StackPane implements Initializable
     @FXML
     private GridPane seatsGrid;
     
-//    private ObservableList<ObservableList<Seat>> seatsList;
     private Room room;
     
     public SeatsView(Room room)
@@ -41,7 +40,6 @@ public class SeatsView extends StackPane implements Initializable
         {
             throw new RuntimeException(e);
         }
-    
     }
     
     @Override
@@ -71,13 +69,11 @@ public class SeatsView extends StackPane implements Initializable
                 Seat seat;
                 if ((seat = room.getSeat(j, i)) != null)
                 {
-                    ToggleButton tb = new ToggleButton();
-                    tb.getStylesheets().add("/styles/chair-button.css");
-                    tb.getStyleClass().add("chair-button");
+                    SeatButton sb = new SeatButton();
     
-                    assignButtonState(tb, seat);
+                    assignButtonState(sb, seat);
     
-                    tb.selectedProperty().addListener(
+                    sb.selectedProperty().addListener(
                         (selectedProperty, oldValue, newValue) ->
                         {
                             if (newValue)
@@ -87,12 +83,12 @@ public class SeatsView extends StackPane implements Initializable
                         }
                     );
                     
-                    tb.disabledProperty().addListener(
+                    sb.disabledProperty().addListener(
                         (disabledProperty, oldValue, newValue) ->
                         {
                             if (newValue)
                                 seat.setState(Seat.State.OCCUPIED);
-                            else if (tb.isSelected())
+                            else if (sb.isSelected())
                                 seat.setState(Seat.State.SELECTED);
                             else
                                 seat.setState(Seat.State.EMPTY);
@@ -104,12 +100,12 @@ public class SeatsView extends StackPane implements Initializable
                         {
                             if (newState != oldState)
                             {
-                                assignButtonState(tb, seat);
+                                assignButtonState(sb, seat);
                             }
                         }
                     );
                     
-                    seatsGrid.add(tb, i, j);
+                    seatsGrid.add(sb, i, j);
                 }
                 else
                 {
@@ -121,7 +117,7 @@ public class SeatsView extends StackPane implements Initializable
         
     }
     
-    private void assignButtonState(ToggleButton tb, Seat seat)
+    private void assignButtonState(SeatButton tb, Seat seat)
     {
         switch (seat.getState())
         {

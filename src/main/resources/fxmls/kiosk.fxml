@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <BorderPane fx:id="rootBorderPane" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="680.0" xmlns="http://javafx.com/javafx/11.0.1"
+            minWidth="-Infinity" prefHeight="680.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.msos.KioskController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Open..." onAction="#open"/>
-                        <MenuItem mnemonicParsing="false" text="Save" onAction="#save"/>
-                        <MenuItem mnemonicParsing="false" text="Save as..." onAction="#saveAs"/>
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#open" text="Open..."/>
+                        <MenuItem mnemonicParsing="false" onAction="#save" text="Save"/>
+                        <MenuItem mnemonicParsing="false" onAction="#saveAs" text="Save as..."/>
+                        <MenuItem mnemonicParsing="false" onAction="#close" text="Close"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
                         <MenuItem mnemonicParsing="false" text="New Room"/>
                         <MenuItem mnemonicParsing="false" text="Edit Room"/>
+                        <MenuItem mnemonicParsing="false" text="Edit Seats' States"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -39,8 +35,7 @@
     </top>
     <left>
         <ListView fx:id="roomsListView" maxHeight="1.7976931348623157E308" prefHeight="200.0"
-                  prefWidth="180.0" stylesheets="/styles/no-focus-border.css"
-                  BorderPane.alignment="CENTER"/>
+                  prefWidth="180.0" BorderPane.alignment="CENTER"/>
     </left>
     <center>
 

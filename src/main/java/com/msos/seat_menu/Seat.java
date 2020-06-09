@@ -1,4 +1,4 @@
-package com.msos;
+package com.msos.seat_menu;
 
 import com.msos.serialization.SeatPojo;
 import javafx.beans.property.ReadOnlyIntegerProperty;

@@ -1,6 +1,6 @@
 package com.msos.serialization;
 
-import com.msos.Seat;
+import com.msos.seat_menu.Seat;
 
 public class SeatPojo
 {

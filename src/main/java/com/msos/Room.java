@@ -1,5 +1,6 @@
 package com.msos;
 
+import com.msos.seat_menu.Seat;
 import com.msos.serialization.RoomPojo;
 import com.msos.serialization.SeatPojo;
 import javafx.beans.property.BooleanProperty;
@@ -16,21 +17,22 @@ public class Room
 {
     private int number;
     
-    private int rows;
-    private int columns;
+    private final int rows;
+    private final int columns;
     
     private BooleanProperty empty;
     
     private ObservableList<ObservableList<Seat>> seats;
     private ObservableList<Seat> selectedSeats;
     
-    public Room(int number, int rows, int columns)
-    {
-        this(rows, columns);
-        this.number = number;
-    }
+    private RoomEntry entry;
     
     public Room(int rows, int columns)
+    {
+        this(1, rows, columns);
+    }
+    
+    public Room(int number, int rows, int columns)
     {
         if (columns <= 0  ||  rows <= 0)
             throw new IllegalArgumentException(
@@ -38,11 +40,13 @@ public class Room
                 " columns=" + columns + " rows=" + rows
             );
         
+        this.number = number;
         this.columns = columns;
         this.rows = rows;
         this.seats = FXCollections.observableArrayList();
         this.selectedSeats = FXCollections.observableList(new LinkedList<>());
         this.empty = new SimpleBooleanProperty(selectedSeats.isEmpty());
+        this.entry = new RoomEntry(number);
         
         selectedSeats.addListener(
             (ListChangeListener<Seat>) change -> empty.set(selectedSeats.isEmpty())
@@ -144,6 +148,10 @@ public class Room
         return empty;
     }
     
+    public RoomEntry getEntry()
+    {
+        return entry;
+    }
     
     
     public static RoomPojo toPojo(Room room)
@@ -196,10 +204,7 @@ public class Room
         return room;
     }
     
-    
-    
-    
-    
+
     
     
     

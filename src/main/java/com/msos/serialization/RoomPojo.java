@@ -1,7 +1,5 @@
 package com.msos.serialization;
 
-import com.msos.Seat;
-
 import java.util.List;
 
 public class RoomPojo

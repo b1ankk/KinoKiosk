@@ -1,6 +1,6 @@
 package com.msos.ticket_menu;
 
-import com.msos.Seat;
+import com.msos.seat_menu.Seat;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

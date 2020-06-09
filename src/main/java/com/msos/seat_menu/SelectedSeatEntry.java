@@ -1,4 +1,4 @@
-package com.msos;
+package com.msos.seat_menu;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;

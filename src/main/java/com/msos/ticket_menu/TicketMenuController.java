@@ -1,8 +1,6 @@
 package com.msos.ticket_menu;
 
-import com.msos.Seat;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableListValue;
+import com.msos.seat_menu.Seat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
