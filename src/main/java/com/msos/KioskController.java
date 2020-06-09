@@ -1,10 +1,8 @@
 package com.msos;
 
-import com.msos.seat_menu.Seat;
-import com.msos.seat_menu.SeatsPickView;
-import com.msos.seat_menu.SeatsView;
-import com.msos.seat_menu.SelectedSeatEntry;
+import com.msos.seat_menu.*;
 import com.msos.security.PasswordManager;
+import com.msos.security.PasswordPromptStage;
 import com.msos.serialization.Cluster;
 import com.msos.serialization.DefaultSerializer;
 import com.msos.ticket_menu.TicketMenuStage;
@@ -109,7 +107,8 @@ public class KioskController
     private void initSeatsView()
     {
         seatsView = new SeatsPickView(activeRoom);
-    
+        selectedSeatsListView.getItems().clear();
+        
         activeRoom.getSelectedSeats().forEach(
             seat -> selectedSeatsListView.getItems().add(seat.getSelectedEntry())
         );
@@ -132,15 +131,21 @@ public class KioskController
                         items.remove(seat.getSelectedEntry());
                 }
             
-                // validate ticket numbers
-                for (int i = 0; i < items.size(); ++i)
-                    items.get(i).setTicketNumber(i + 1);
+                validateTicketNumbers();
             }
         );
+        
+        validateTicketNumbers();
     
         rootBorderPane.setCenter(seatsView);
     }
     
+    private void validateTicketNumbers()
+    {
+        List<SelectedSeatEntry> items = selectedSeatsListView.getItems();
+        for (int i = 0; i < items.size(); ++i)
+            items.get(i).setTicketNumber(i + 1);
+    }
     
     @FXML
     private void openTicketsMenu() throws IOException
@@ -272,6 +277,21 @@ public class KioskController
             new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)
         );
     }
+    
+    @FXML
+    private void editSeats()
+    {
+        PasswordPromptStage pps = new PasswordPromptStage(
+            stage,
+            () ->
+            {
+                SeatsEditStage editStage = new SeatsEditStage(stage, activeRoom);
+                editStage.show();
+            }
+        );
+        pps.show();
+    }
+    
     
     public Stage getStage()
     {

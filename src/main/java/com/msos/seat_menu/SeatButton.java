@@ -43,6 +43,11 @@ public class SeatButton extends ToggleButton
     
     public SeatButton(Seat.State initialState)
     {
+        this(initialState, false);
+    }
+    
+    public SeatButton(Seat.State initialState, boolean usingPseudoDisable)
+    {
         getStylesheets().add("/styles/seat-button.css");
         getStyleClass().add("seat-button");
         
@@ -129,7 +134,7 @@ public class SeatButton extends ToggleButton
             }
         );
         
-        
+        setUsingPseudoDisable(usingPseudoDisable);
         setSeatState(initialState);
     }
     

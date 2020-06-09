@@ -31,9 +31,6 @@ public class App extends Application
     {
         this.mainStage = stage;
         
-        // TODO REMOVE TEST PASSWORDS
-        PasswordManager.addPassword("user", "1234");
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource(UI_PATH));
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/ticket_menu.fxml"));
         Parent root = loader.load();
@@ -77,7 +74,7 @@ public class App extends Application
     
     private void showExitPrompt(WindowEvent e)
     {
-        PasswordPromptStage pps = new PasswordPromptStage(mainStage);
+        PasswordPromptStage pps = new PasswordPromptStage(mainStage, mainStage::close);
         pps.show();
         e.consume();
     }

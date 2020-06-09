@@ -8,12 +8,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
 public class PasswordPrompt extends VBox
 {
+    public interface OnVerifiedEvent
+    {
+        void onVerified();
+    }
+    
     @FXML
     private TextField userField;
     
@@ -29,8 +33,8 @@ public class PasswordPrompt extends VBox
     @FXML
     private Label incorrectInputLabel;
     
-    private Window windowToClose;
     
+    private OnVerifiedEvent onVerifiedEvent;
     
     public PasswordPrompt()
     {
@@ -64,7 +68,7 @@ public class PasswordPrompt extends VBox
                     if (PasswordManager.verify(user, password))
                     {
                         ((Node) e.getSource()).getScene().getWindow().hide();
-                        windowToClose.hide();
+                        onVerifiedEvent.onVerified();
                     }
                     else
                     {
@@ -81,16 +85,12 @@ public class PasswordPrompt extends VBox
         cancelButton.setOnAction(
             e -> ((Node) e.getSource()).getScene().getWindow().hide()
         );
+        
+        // TODO make initial focus on user test field, not confirm button
     }
     
-    
-    public Window getWindowToClose()
+    public void setOnVerifiedEvent(OnVerifiedEvent event)
     {
-        return windowToClose;
-    }
-    
-    public void setWindowToClose(Window windowToClose)
-    {
-        this.windowToClose = windowToClose;
+        this.onVerifiedEvent = event;
     }
 }

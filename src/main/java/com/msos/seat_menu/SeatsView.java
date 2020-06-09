@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SeatsView extends StackPane implements Initializable
+public abstract class SeatsView extends StackPane implements Initializable
 {
     private static final double PREF_COLUMN_WIDTH = 32;
     
@@ -73,7 +73,7 @@ public class SeatsView extends StackPane implements Initializable
                 Seat seat;
                 if ((seat = room.getSeat(j, i)) != null)
                 {
-                    SeatButton sb = new SeatButton(seat.getState());
+                    SeatButton sb = createButton(seat);
                     
                     seat.stateProperty().bindBidirectional(
                         sb.seatStateProperty()
@@ -88,7 +88,12 @@ public class SeatsView extends StackPane implements Initializable
             }
         }
     }
-
+    
+    protected SeatButton createButton(Seat seat)
+    {
+        return new SeatButton(seat.getState());
+    }
+    
     public int getRows()
     {
         return seatsGrid.getRowCount();
@@ -102,5 +107,15 @@ public class SeatsView extends StackPane implements Initializable
     public ObservableList<Node> getSeatButtons()
     {
         return seatsGrid.getChildren();
+    }
+    
+    protected GridPane getSeatsGrid()
+    {
+        return seatsGrid;
+    }
+    
+    protected Room getRoom()
+    {
+        return room;
     }
 }

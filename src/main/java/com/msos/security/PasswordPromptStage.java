@@ -7,18 +7,21 @@ import javafx.stage.Window;
 
 public class PasswordPromptStage extends Stage
 {
-    public PasswordPromptStage(Window window)
+    public PasswordPromptStage(Window parentWindow, PasswordPrompt.OnVerifiedEvent event)
     {
         super();
  
         PasswordPrompt passwordPrompt = new PasswordPrompt();
-        passwordPrompt.setWindowToClose(window);
-        initOwner(window);
+        passwordPrompt.setOnVerifiedEvent(
+            event
+        );
+        initOwner(parentWindow);
         initModality(Modality.APPLICATION_MODAL);
         setResizable(false);
+        setTitle("Authentication required");
         
-        if (window instanceof Stage)
-            getIcons().addAll(((Stage)window).getIcons());
+        if (parentWindow instanceof Stage)
+            getIcons().addAll(((Stage)parentWindow).getIcons());
         
         Scene scene = new Scene(passwordPrompt);
         setScene(scene);

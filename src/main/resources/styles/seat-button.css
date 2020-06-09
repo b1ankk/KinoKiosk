@@ -27,6 +27,7 @@
     -fx-graphic: url('/icons/seat_red_32.png');
 }
 
+/*noinspection CssInvalidPseudoSelector*/
 .seat-button:pseudo-disabled {
     -fx-background-color: lightpink;
     -fx-pref-height: 32px;
