@@ -45,6 +45,8 @@ public class SeatsView extends StackPane implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        // CREATE COLUMNS AND ROWS
+        
         ObservableList<ColumnConstraints> columnConstraintsList = seatsGrid.getColumnConstraints();
         columnConstraintsList.clear();
         for (int i = 0; i < room.getColumnsCount(); ++i)
@@ -62,6 +64,8 @@ public class SeatsView extends StackPane implements Initializable
             rowConstraintsList.add(rc);
         }
     
+        // POPULATE COLUMNS AND ROWS WITH BUTTONS
+        
         for (int i = 0; i < room.getColumnsCount(); ++i)
         {
             for (int j = 0; j < room.getRowsCount(); ++j)
@@ -69,40 +73,10 @@ public class SeatsView extends StackPane implements Initializable
                 Seat seat;
                 if ((seat = room.getSeat(j, i)) != null)
                 {
-                    SeatButton sb = new SeatButton();
-    
-                    assignButtonState(sb, seat);
-    
-                    sb.selectedProperty().addListener(
-                        (selectedProperty, oldValue, newValue) ->
-                        {
-                            if (newValue)
-                                seat.setState(Seat.State.SELECTED);
-                            else
-                                seat.setState(Seat.State.EMPTY);
-                        }
-                    );
+                    SeatButton sb = new SeatButton(seat.getState());
                     
-                    sb.disabledProperty().addListener(
-                        (disabledProperty, oldValue, newValue) ->
-                        {
-                            if (newValue)
-                                seat.setState(Seat.State.OCCUPIED);
-                            else if (sb.isSelected())
-                                seat.setState(Seat.State.SELECTED);
-                            else
-                                seat.setState(Seat.State.EMPTY);
-                        }
-                    );
-                    
-                    seat.stateProperty().addListener(
-                        (observableValue, oldState, newState) ->
-                        {
-                            if (newState != oldState)
-                            {
-                                assignButtonState(sb, seat);
-                            }
-                        }
+                    seat.stateProperty().bindBidirectional(
+                        sb.seatStateProperty()
                     );
                     
                     seatsGrid.add(sb, i, j);
@@ -111,22 +85,10 @@ public class SeatsView extends StackPane implements Initializable
                 {
                     seatsGrid.getColumnConstraints().get(i).setMinWidth(PREF_COLUMN_WIDTH);
                 }
-
             }
         }
-        
     }
-    
-    private void assignButtonState(SeatButton tb, Seat seat)
-    {
-        switch (seat.getState())
-        {
-            case EMPTY -> {tb.setSelected(false); tb.setDisable(false);}
-            case SELECTED -> {tb.setSelected(true); tb.setDisable(false);}
-            case OCCUPIED -> {tb.setSelected(false); tb.setDisable(true);}
-        }
-    }
-    
+
     public int getRows()
     {
         return seatsGrid.getRowCount();
