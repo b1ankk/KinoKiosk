@@ -93,6 +93,9 @@ public class Seat
     
     public static SeatPojo toPojo(Seat seat)
     {
+        if (seat == null)
+            return null;
+        
         return new SeatPojo(
               seat.state.get(),
               seat.rowNumber.get(),
@@ -102,6 +105,9 @@ public class Seat
     
     public static Seat fromPojo(SeatPojo seatPojo)
     {
+        if (seatPojo == null)
+            return null;
+        
         return new Seat(
             seatPojo.getState(),
             seatPojo.getRowNumber(),

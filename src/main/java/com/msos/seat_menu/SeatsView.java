@@ -14,7 +14,8 @@ import java.util.ResourceBundle;
 
 public abstract class SeatsView extends StackPane implements Initializable
 {
-    private static final double PREF_COLUMN_WIDTH = 32;
+    private static final double MIN_COLUMN_WIDTH = 32;
+    private static final double MIN_ROW_HEIGHT = 32;
     
     
     @FXML
@@ -53,6 +54,7 @@ public abstract class SeatsView extends StackPane implements Initializable
         {
             ColumnConstraints cc = new ColumnConstraints();
             columnConstraintsList.add(cc);
+            cc.setMinWidth(MIN_COLUMN_WIDTH);
         }
         
         ObservableList<RowConstraints> rowConstraintsList = seatsGrid.getRowConstraints();
@@ -62,6 +64,7 @@ public abstract class SeatsView extends StackPane implements Initializable
         {
             RowConstraints rc = new RowConstraints();
             rowConstraintsList.add(rc);
+            rc.setMinHeight(MIN_ROW_HEIGHT);
         }
     
         // POPULATE COLUMNS AND ROWS WITH BUTTONS
@@ -75,15 +78,13 @@ public abstract class SeatsView extends StackPane implements Initializable
                 {
                     SeatButton sb = createButton(seat);
                     
+                    sb.setFocusTraversable(false);
+                    
                     seat.stateProperty().bindBidirectional(
                         sb.seatStateProperty()
                     );
                     
                     seatsGrid.add(sb, i, j);
-                }
-                else
-                {
-                    seatsGrid.getColumnConstraints().get(i).setMinWidth(PREF_COLUMN_WIDTH);
                 }
             }
         }

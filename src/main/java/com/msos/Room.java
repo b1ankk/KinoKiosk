@@ -80,6 +80,11 @@ public class Room
         }
     }
     
+    public void removeSeat(int row, int column)
+    {
+        seats.get(row).set(column, null);
+    }
+    
     public int getNumber()
     {
         return number;
@@ -122,6 +127,9 @@ public class Room
         if (getSeat(row, column) != null)
             throw new UnsupportedOperationException("Place already occupied: row=" + row + " column=" + column);
         
+        if (seat == null)
+            return;
+        
         seat.stateProperty().addListener(
             (observableValue, oldState, newState) ->
             {
@@ -160,8 +168,6 @@ public class Room
         for (int i = 0; i < room.rows; ++i)
             seats.add(new ArrayList<>());
         
-        List<SeatPojo> selected = new ArrayList<>();
-        
         for (int j = 0; j < room.rows; ++j)
             for (int i = 0; i < room.columns; ++i)
             {
@@ -169,9 +175,6 @@ public class Room
                     room.getSeat(j, i)
                 );
                 seats.get(j).add(seatPojo);
-                
-                if (seatPojo.getState() == Seat.State.SELECTED)
-                    selected.add(seatPojo);
             }
         
         return new RoomPojo(
@@ -179,8 +182,7 @@ public class Room
             room.rows,
             room.columns,
             room.empty.get(),
-            seats,
-            selected
+            seats
         );
     }
     

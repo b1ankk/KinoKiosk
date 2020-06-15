@@ -3,29 +3,17 @@ package com.msos;
 import com.msos.seat_menu.SeatsEditView;
 import com.msos.seat_menu.SeatsView;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
-public class SeatsEditStage extends Stage
+public class SeatsEditStage extends MySubStage
 {
-    public SeatsEditStage(Window ownerWindow, Room activeRoom)
+    public SeatsEditStage(Stage ownerStage, Room activeRoom)
     {
-        SeatsView seatsView = new SeatsEditView(activeRoom);
-        Pane pane = new Pane();
-        pane.getChildren().add(seatsView);
-    
-        Scene scene = new Scene(pane);
-    
-        initOwner(ownerWindow);
-        initModality(Modality.WINDOW_MODAL);
-        setResizable(false);
+        super(ownerStage);
         setTitle("Edit Seats' States");
         
-        if (ownerWindow instanceof Stage)
-            getIcons().addAll(((Stage)ownerWindow).getIcons());
-        
+        SeatsView seatsView = new SeatsEditView(activeRoom);
+        Scene scene = new Scene(seatsView);
         setScene(scene);
     }
 }

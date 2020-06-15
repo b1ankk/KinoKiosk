@@ -16,7 +16,7 @@ public class RoomPojo
     }
     
     public RoomPojo(int number, int rows, int columns, boolean empty,
-                    List<List<SeatPojo>> seats, List<SeatPojo> selectedSeats)
+                    List<List<SeatPojo>> seats)
     {
         this.number = number;
         this.columns = columns;

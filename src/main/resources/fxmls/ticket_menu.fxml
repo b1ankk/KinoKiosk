@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="400.0" spacing="4.0"
+<VBox maxWidth="460" prefHeight="600.0" prefWidth="400.0" spacing="4.0"
       xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.msos.ticket_menu.TicketMenuController">
     <children>
@@ -32,8 +32,8 @@
                         <Font size="18.0"/>
                     </font>
                 </Label>
-                <Label alignment="TOP_LEFT" text="33.69" textFill="GREEN" GridPane.columnIndex="1"
-                       fx:id="toPayValue">
+                <Label fx:id="toPayValue" alignment="TOP_LEFT" text="33.69" textFill="GREEN"
+                       GridPane.columnIndex="1">
                     <font>
                         <Font name="System Bold" size="20.0"/>
                     </font>
@@ -45,10 +45,10 @@
                 </Label>
                 <ButtonBar prefHeight="40.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
                     <buttons>
-                        <Button cancelButton="true" mnemonicParsing="false" text="Back"
-                                onAction="#cancel"/>
-                        <Button defaultButton="true" mnemonicParsing="false" text="BUY"
-                                onAction="#finalizeTransaction"/>
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#cancel"
+                                text="Back"/>
+                        <Button defaultButton="true" mnemonicParsing="false"
+                                onAction="#finalizeTransaction" text="BUY"/>
                     </buttons>
                 </ButtonBar>
             </children>

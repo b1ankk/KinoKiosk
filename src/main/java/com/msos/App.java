@@ -19,7 +19,8 @@ import java.util.List;
 
 public class App extends Application
 {
-    public final static String SAVE_FILE_EXTENSION = ".json"; // extension WITH a dot before
+    public static final String SAVE_FILE_EXTENSION = ".json"; // extension WITH a dot before
+    public static final String DEFAULT_FILE_PATH = ".default" + SAVE_FILE_EXTENSION; // path to a file to be opened by default
     
     private final String UI_PATH = "/fxmls/kiosk.fxml";
     private final String ICO_PATH = "/icons/ticket_gimp.ico";

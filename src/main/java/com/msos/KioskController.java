@@ -10,7 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -19,6 +21,9 @@ import javafx.stage.WindowEvent;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 public class KioskController
@@ -31,7 +36,7 @@ public class KioskController
     private ListView<RoomEntry> roomsListView;
     
     @FXML
-    private ListView<SelectedSeatEntry> selectedSeatsListView;
+    private ListView<SelectedSeatEntry> ticketListView;
     
     @FXML
     private Button buyTicketsButton;
@@ -52,36 +57,111 @@ public class KioskController
     {
         if (activeRoom == null)
         {
-            activeRoom = new Room(6, 12);
-            activeRoom.fill();
-            rooms.add(activeRoom);
+            File defaultFile = new File(App.DEFAULT_FILE_PATH);
+            if (defaultFile.exists())
+            {
+                loadFromFile(defaultFile);
+            }
+            else
+            {
+                activeRoom = new Room(6, 12);
+                activeRoom.fill();
+                rooms.add(activeRoom);
+                loadUI();
+            }
         }
-        
-        initSeatsView();
-        resetBuyButton();
-        initRoomsList();
-        
     }
     
-    private void resetBuyButton()
+    private void loadUI()
     {
-        buyTicketsButton.disableProperty().unbind();
-        buyTicketsButton.disableProperty().bind(
-            activeRoom.emptyProperty()
+        initializeSeatsView();
+        initializeTicketListView();
+        
+        for (Room room : rooms)
+            addTicketListEvents(room);
+        
+        initRoomListView();
+        addRoomListViewEvents();
+        initBuyButton();
+    }
+    
+    private void reloadUI()
+    {
+        initializeSeatsView();
+        initializeTicketListView();
+        initRoomListView();
+        initBuyButton();
+    }
+    
+    private void initializeSeatsView()
+    {
+        seatsView = new SeatsPickView(activeRoom);
+        rootBorderPane.setCenter(seatsView);
+    }
+    
+    private void initializeTicketListView()
+    {
+        ticketListView.getItems().clear();
+        activeRoom.getSelectedSeats().forEach(
+            seat -> ticketListView.getItems().add(seat.getSelectedEntry())
+        );
+        validateTicketNumbers();
+    }
+    
+    private void addTicketListEvents(Room room)
+    {
+        room.getSelectedSeats().addListener(
+            (ListChangeListener<? super Seat>) change ->
+            {
+                List<SelectedSeatEntry> items = ticketListView.getItems();
+                while (change.next())
+                {
+                    for (Seat seat : change.getAddedSubList())
+                    {
+                        SelectedSeatEntry entry = seat.getSelectedEntry();
+                        entry.setTicketNumber(items.size() + 1);
+                        items.add(entry);
+                    }
+                    for (Seat seat : change.getRemoved())
+                        items.remove(seat.getSelectedEntry());
+                }
+            
+                validateTicketNumbers();
+            }
         );
     }
     
-    private void initRoomsList()
+    private void initRoomListView()
     {
         roomsListView.getItems().clear();
-        
         roomsListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        roomsListView.getSelectionModel().clearSelection();
-        
         rooms.forEach(
             room -> roomsListView.getItems().add(
                 room.getEntry()
             )
+        );
+        roomsListView.getSelectionModel().selectFirst();
+    }
+    
+    private void addRoomListViewEvents()
+    {
+        roomsListView.setOnMouseClicked(
+            mouseEvent ->
+            {
+                if (roomsListView.getSelectionModel().getSelectedIndex() != -1)
+                {
+                    if (mouseEvent.getButton() == MouseButton.PRIMARY)
+                    {
+                        int index = roomsListView.getSelectionModel().getSelectedIndex();
+                        if (rooms.get(index) != activeRoom)
+                        {
+                            activeRoom = rooms.get(index);
+                            reloadUI();
+                            roomsListView.getSelectionModel().select(index);
+                        }
+                    }
+                }
+            }
         );
         
         rooms.addListener(
@@ -90,9 +170,11 @@ public class KioskController
                 while (change.next())
                 {
                     change.getAddedSubList().forEach(
-                        room -> roomsListView.getItems().add(
-                            room.getEntry()
-                        )
+                        room ->
+                        {
+                            RoomEntry roomEntry = room.getEntry();
+                            roomsListView.getItems().add(roomEntry);
+                        }
                     );
                     change.getRemoved().forEach(
                         room -> roomsListView.getItems().remove(
@@ -104,48 +186,21 @@ public class KioskController
         );
     }
     
-    private void initSeatsView()
+    private void initBuyButton()
     {
-        seatsView = new SeatsPickView(activeRoom);
-        selectedSeatsListView.getItems().clear();
-        
-        activeRoom.getSelectedSeats().forEach(
-            seat -> selectedSeatsListView.getItems().add(seat.getSelectedEntry())
+        buyTicketsButton.disableProperty().unbind();
+        buyTicketsButton.disableProperty().bind(
+            activeRoom.emptyProperty()
         );
-    
-        activeRoom.getSelectedSeats().addListener(
-            (ListChangeListener<? super Seat>) change ->
-            {
-                List<SelectedSeatEntry> items = selectedSeatsListView.getItems();
-                while (change.next())
-                {
-                    for (Seat seat : change.getAddedSubList())
-                    {
-                        SelectedSeatEntry entry = seat.getSelectedEntry();
-                        
-                        entry.setTicketNumber(items.size() + 1);
-                        
-                        items.add(entry);
-                    }
-                    for (Seat seat : change.getRemoved())
-                        items.remove(seat.getSelectedEntry());
-                }
-            
-                validateTicketNumbers();
-            }
-        );
-        
-        validateTicketNumbers();
-    
-        rootBorderPane.setCenter(seatsView);
     }
     
     private void validateTicketNumbers()
     {
-        List<SelectedSeatEntry> items = selectedSeatsListView.getItems();
+        List<SelectedSeatEntry> items = ticketListView.getItems();
         for (int i = 0; i < items.size(); ++i)
             items.get(i).setTicketNumber(i + 1);
     }
+    
     
     @FXML
     private void openTicketsMenu() throws IOException
@@ -157,6 +212,34 @@ public class KioskController
         ticketMenu.getIcons().addAll(stage.getIcons());
         ticketMenu.show();
     }
+    
+    @FXML
+    private void newFile()
+    {
+        RoomSizePicker.RoomSize size = new RoomSizePicker.RoomSize();
+        RoomSizePicker picker = new RoomSizePicker(size);
+        Scene pickerScene = new Scene(picker);
+        
+        RoomSizePickerStage pickerStage = new RoomSizePickerStage(stage);
+        pickerStage.setScene(pickerScene);
+        
+        pickerStage.showAndWait();
+        
+        if (size.getRows() > 0 && size.getColumns() > 0)
+        {
+            activeRoom = new Room( 1,
+                size.getRows(),
+                size.getColumns()
+            );
+            activeRoom.fill();
+            
+            rooms.clear();
+            rooms.add(activeRoom);
+            
+            loadUI();
+        }
+    }
+    
     
     @FXML
     private void open()
@@ -192,11 +275,8 @@ public class KioskController
                 )
             );
             
-            // TODO: temporary assignment -> delete later
             activeRoom = rooms.get(0);
-            initSeatsView();
-            resetBuyButton();
-            initRoomsList();
+            loadUI();
             
             lastSaveDestination = file;
         }
@@ -259,6 +339,35 @@ public class KioskController
         }
     }
     
+    @FXML
+    private void chooseDefault()
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose default file...");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
+            String.format("CinemaKiosk file(*%s)", App.SAVE_FILE_EXTENSION),
+            "*" + App.SAVE_FILE_EXTENSION
+        ));
+        File file = fileChooser.showOpenDialog(stage);
+        
+        if (file != null && !file.equals(new File(App.DEFAULT_FILE_PATH)))
+        {
+            try
+            {
+                Files.copy(
+                    file.toPath(),
+                    Paths.get(App.DEFAULT_FILE_PATH),
+                    StandardCopyOption.REPLACE_EXISTING
+                );
+            }
+            catch (IOException e)
+            {
+                showErrorAlert(e, "Error setting default file");
+            }
+        }
+    }
+    
     private void showErrorAlert(Exception e, String title)
     {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -279,6 +388,99 @@ public class KioskController
     }
     
     @FXML
+    private void newRoom()
+    {
+        RoomSizePicker.RoomSize size = new RoomSizePicker.RoomSize();
+        
+        RoomSizePickerStage pickerStage = new RoomSizePickerStage(stage);
+        Scene pickerScene = new Scene(new RoomSizePicker(size));
+        pickerStage.setScene(pickerScene);
+        pickerStage.showAndWait();
+    
+        if (size.getColumns() > 0 && size.getRows() > 0)
+        {
+            SeatsCreateStage createStage = new SeatsCreateStage(stage);
+            Room newRoom = new Room(
+                rooms.size() + 1,
+                size.getRows(),
+                size.getColumns()
+            );
+            newRoom.fill();
+            
+            Scene createScene = new Scene(
+                new SeatsCreateView(newRoom)
+            );
+            createStage.setScene(createScene);
+            createStage.showAndWait();
+            
+            while (!newRoom.getSelectedSeats().isEmpty())
+            {
+                Seat seat = newRoom.getSelectedSeats().get(0);
+                newRoom.removeSeat(
+                    seat.getRowNumber(),
+                    seat.getSeatNumber()
+                );
+                newRoom.getSelectedSeats().remove(0);
+            }
+            
+            rooms.add(newRoom);
+            activeRoom = newRoom;
+            loadUI();
+            roomsListView.getSelectionModel().select(activeRoom.getEntry());
+        }
+    }
+    
+    @FXML
+    private void editRoom()
+    {
+        Room editedRoom = new Room(activeRoom.getRowsCount(), activeRoom.getColumnsCount());
+        editedRoom.fill();
+        
+        for (int i = 0; i < activeRoom.getRowsCount(); ++i)
+        {
+            for (int j = 0; j < activeRoom.getColumnsCount(); ++j)
+            {
+                if (activeRoom.getSeat(i, j) == null)
+                    editedRoom.getSeat(i, j).setState(Seat.State.SELECTED);
+            }
+        }
+    
+        SeatsCreateStage editStage = new SeatsCreateStage(stage);
+        Scene editScene = new Scene(
+            new SeatsCreateView(editedRoom)
+        );
+        editStage.setScene(editScene);
+        editStage.showAndWait();
+        while (!editedRoom.getSelectedSeats().isEmpty())
+        {
+            Seat seat = editedRoom.getSelectedSeats().get(0);
+            int row = seat.getRowNumber();
+            int column = seat.getSeatNumber();
+            
+            if (activeRoom.getSeat(row, column) != null)
+            {
+                activeRoom.getSeat(row, column).setState(Seat.State.EMPTY);
+                activeRoom.removeSeat(row, column);
+            }
+            editedRoom.getSelectedSeats().remove(0);
+        }
+        for (int i = 0; i < activeRoom.getRowsCount(); ++i)
+        {
+            for (int j = 0; j < activeRoom.getColumnsCount(); ++j)
+            {
+                if (activeRoom.getSeat(i, j) == null &&
+                    editedRoom.getSeat(i, j).getState() != Seat.State.SELECTED)
+                {
+                    activeRoom.addSeat(i, j, new Seat(i, j));
+                }
+            }
+        }
+        
+        reloadUI();
+    }
+    
+    
+    @FXML
     private void editSeats()
     {
         PasswordPromptStage pps = new PasswordPromptStage(
@@ -292,6 +494,16 @@ public class KioskController
         pps.show();
     }
     
+    @FXML
+    private void clearSelectedTickets()
+    {
+        while (!activeRoom.getSelectedSeats().isEmpty())
+        {
+            activeRoom.getSelectedSeats().get(0).setState(
+                Seat.State.EMPTY
+            );
+        }
+    }
     
     public Stage getStage()
     {
