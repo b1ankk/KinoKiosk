@@ -85,7 +85,7 @@ public class KioskController
         initBuyButton();
     }
     
-    private void reloadUI()
+    private void refreshUI()
     {
         initializeSeatsView();
         initializeTicketListView();
@@ -156,7 +156,7 @@ public class KioskController
                         if (rooms.get(index) != activeRoom)
                         {
                             activeRoom = rooms.get(index);
-                            reloadUI();
+                            refreshUI();
                             roomsListView.getSelectionModel().select(index);
                         }
                     }
@@ -425,7 +425,8 @@ public class KioskController
             
             rooms.add(newRoom);
             activeRoom = newRoom;
-            loadUI();
+            refreshUI();
+            addTicketListEvents(newRoom);
             roomsListView.getSelectionModel().select(activeRoom.getEntry());
         }
     }
@@ -476,7 +477,7 @@ public class KioskController
             }
         }
         
-        reloadUI();
+        refreshUI();
     }
     
     

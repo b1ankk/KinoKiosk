@@ -1,0 +1,637 @@
+{
+  "rooms" : [ {
+    "number" : 1,
+    "rows" : 8,
+    "columns" : 17,
+    "empty" : true,
+    "seats" : [ [ {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 0
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 7
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 8
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 13
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 14
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 15
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 16
+    } ], [ {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 0
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 7
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 13
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 14
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 15
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 16
+    } ], [ {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 0
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 7
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 13
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 14
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 15
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 16
+    } ], [ {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 0
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 7
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 13
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 14
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 15
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 16
+    } ], [ null, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 7
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 13
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 14
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 15
+    }, null ], [ null, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 7
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 13
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 14
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 5,
+      "seatNumber" : 15
+    }, null ], [ null, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 7
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 13
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 14
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 6,
+      "seatNumber" : 15
+    }, null ], [ null, null, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 7
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 9
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 10
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 11
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 12
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 7,
+      "seatNumber" : 13
+    }, null, null, null ] ]
+  }, {
+    "number" : 2,
+    "rows" : 5,
+    "columns" : 9,
+    "empty" : true,
+    "seats" : [ [ {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 0
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 3
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 4
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 7
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 0,
+      "seatNumber" : 8
+    } ], [ {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 0
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 3
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 7
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 1,
+      "seatNumber" : 8
+    } ], [ {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 0
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 3
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 7
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 2,
+      "seatNumber" : 8
+    } ], [ null, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 3
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 3,
+      "seatNumber" : 7
+    }, null ], [ null, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 1
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 2
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 3
+    }, null, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 5
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 6
+    }, {
+      "state" : "EMPTY",
+      "rowNumber" : 4,
+      "seatNumber" : 7
+    }, null ] ]
+  } ],
+  "passwords" : {
+    "user" : {
+      "salt" : "5dYRXeedQr2hNK/qCQksVIC+l/qZ6SwcaALwCgeoxuw=",
+      "hash" : "WQcBkNUGnplORirjArVJ0n15+MSaZVUl0Te4eInyVnU="
+    }
+  }
+}
