@@ -1,5 +1,6 @@
 package com.msos.security;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -85,8 +86,8 @@ public class PasswordPrompt extends VBox
         cancelButton.setOnAction(
             e -> ((Node) e.getSource()).getScene().getWindow().hide()
         );
-        
-        // TODO make initial focus on user test field, not confirm button
+    
+        Platform.runLater(userField::requestFocus);
     }
     
     public void setOnVerifiedEvent(OnVerifiedEvent event)

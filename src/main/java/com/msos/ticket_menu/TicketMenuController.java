@@ -1,6 +1,8 @@
 package com.msos.ticket_menu;
 
+import com.msos.NoSelectionModel;
 import com.msos.seat_menu.Seat;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,7 +35,7 @@ public class TicketMenuController
         return selectedSeats;
     }
     
-    public void setSelectedSeats(ObservableList<Seat> selectedSeats)
+    public void setSelectedSeats(ObservableList<Seat> selectedSeats, int roomNumber)
     {
         this.selectedSeats = selectedSeats;
     
@@ -42,9 +44,11 @@ public class TicketMenuController
             TicketType.values()
         );
         
+        ticketListView.setSelectionModel(new NoSelectionModel<>());
+        
         for (Seat seat : selectedSeats)
         {
-            TicketEntry entry = new TicketEntry(seat, ticketOptions);
+            TicketEntry entry = new TicketEntry(seat, ticketOptions, roomNumber);
             entry.ticketPriceProperty().addListener(
                 (observableValue, oldPrice, newPrice) ->
                     calculateFullPrice()

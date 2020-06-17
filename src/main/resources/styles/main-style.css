@@ -1,0 +1,148 @@
+@font-face{
+    src: url('/fonts/OpenSans-Regular.ttf');
+}
+@font-face{
+    src: url('/fonts/OpenSans-SemiBold.ttf');
+}
+@font-face{
+    src: url('/fonts/OpenSans-Bold.ttf');
+}
+
+
+{
+    -fx-border-style: none;
+    -fx-background-insets: 0, 0;
+    -fx-border-radius: 0;
+}
+
+.root{
+    -fx-font-family: 'Open Sans Regular';
+    -fx-font-size: 14;
+}
+
+:focused{
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-border-style: hidden;
+    -fx-background-insets: 0, 0, 0, 0;
+    -fx-padding: 0;
+}
+
+
+.button,
+.button:focused{
+    -fx-background-radius: 0;
+    -fx-background-color: darkgray;
+    -fx-padding: 2 8 2 8;
+    -fx-min-height: 30;
+}
+
+.button:hover{
+    -fx-background-color: #949494;
+}
+
+.button:armed{
+    -fx-background-color: gray;
+}
+
+.list-cell{
+    -fx-text-alignment: left;
+    -fx-padding: 0,0,0,0;
+}
+
+.list-cell:selected{
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: darkgray;
+    -fx-background-insets: 0 0 0 0;
+    -fx-border-style: none;
+}
+
+.scroll-pane{
+    -fx-padding: 0 0 0 0 ;
+}
+
+.scroll-bar{
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: lightgray;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.scroll-bar .thumb{
+    -fx-background-color: darkgray;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.scroll-bar .thumb:pressed{
+    -fx-background-color: gray;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button{
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+}
+
+.scroll-bar .increment-button:pressed,
+.scroll-bar .decrement-button:pressed{
+    -fx-background-color: gray;
+}
+
+.scroll-bar .increment-arrow:pressed,
+.scroll-bar .decrement-arrow:pressed{
+    -fx-background-color: whitesmoke;
+}
+
+
+.combo-box{
+    -fx-background-color: lightgray;
+    -fx-background-radius: 0;
+}
+
+.combo-box:hover{
+    -fx-background-color: darkgray;
+}
+
+.combo-box .list-view{
+    -fx-background-color: whitesmoke;
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.combo-box .label{
+    -fx-text-fill: black;
+}
+
+.combo-box .list-cell{
+    -fx-padding: 2 4 2 4;
+    -fx-text-fill: black;
+}
+
+.combo-box .list-cell:selected{
+    -fx-background-color: lightgray;
+}
+
+.combo-box .list-cell:hover{
+    -fx-background-color: darkgray;
+    -fx-padding:2 4 2 4;
+}
+
+.text-field{
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-padding: 2 4 2 4;
+    -fx-border-style: none;
+    -fx-border-width: 1;
+    -fx-border-color: darkgray;
+
+    -fx-text-fill: black;
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 13;
+}
+
+.text-field:focused{
+    -fx-padding: 2 4 2 4;
+    -fx-border-color: gray;
+    -fx-border-style: none;
+    -fx-border-width: 1;
+}

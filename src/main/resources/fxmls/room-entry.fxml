@@ -7,21 +7,17 @@
 <?import javafx.scene.text.Font?>
 
 
-<fx:root type="VBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-       xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="VBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+         minWidth="-Infinity"
+         xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+         stylesheets="/styles/main-style.css">
     <children>
         <HBox spacing="8.0">
             <children>
-                <Label text="Room:">
-                    <font>
-                        <Font size="24.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="numberLabel" text="4.">
-                    <font>
-                        <Font name="System" size="24.0"/>
-                    </font>
-                </Label>
+                <Label text="Room:"
+                       style="-fx-font-family: 'Open Sans SemiBold'; -fx-font-size: 24"/>
+                <Label fx:id="numberLabel" text="4."
+                       style="-fx-font-family: 'Open Sans SemiBold'; -fx-font-size: 24"/>
             </children>
         </HBox>
         <HBox spacing="6.0">

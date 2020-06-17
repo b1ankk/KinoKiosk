@@ -1,0 +1,59 @@
+.menu{
+    -fx-font-size: 13;
+}
+
+.menu-bar{
+    -fx-background-color: whitesmoke;
+    -fx-border-color: darkgray;
+    -fx-border-width: 0 0 1 0;
+    -fx-spacing: 0;
+    -fx-padding: 0;
+}
+
+
+.menu-button{
+    -fx-padding: 2 8 2 8;
+}
+
+.menu-button:hover,
+.menu-button:showing{
+    -fx-background-color: lightgray;
+}
+
+.menu-button:pressed{
+    -fx-background-color: darkgray;
+}
+
+.menu-button:hover .label,
+.menu-button:showing .label{
+    -fx-text-fill: black;
+}
+
+.context-menu,
+.context-menu:hover,
+.context-menu:showing{
+    -fx-padding: 0 0 0 0;
+    -fx-border-width: 1;
+    -fx-border-color: darkgray;
+    -fx-border-style: none;
+}
+
+.menu-item{
+    -fx-padding: 4 8 4 8;
+    -fx-border-insets: 0 0 0 0;
+    -fx-background-color: whitesmoke;
+}
+
+.menu-item:hover{
+    -fx-background-color: lightgray;
+}
+
+.menu-item:pressed{
+    -fx-background-color: darkgray;
+}
+
+.separator{
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: whitesmoke;
+    -fx-border-style: hidden;
+}

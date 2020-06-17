@@ -6,6 +6,7 @@ import com.msos.security.PasswordPromptStage;
 import com.msos.serialization.Cluster;
 import com.msos.serialization.DefaultSerializer;
 import com.msos.ticket_menu.TicketMenuStage;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -106,6 +107,7 @@ public class KioskController
             seat -> ticketListView.getItems().add(seat.getSelectedEntry())
         );
         validateTicketNumbers();
+        ticketListView.setSelectionModel(new NoSelectionModel<>());
     }
     
     private void addTicketListEvents(Room room)
@@ -205,7 +207,7 @@ public class KioskController
     @FXML
     private void openTicketsMenu() throws IOException
     {
-        TicketMenuStage ticketMenu = new TicketMenuStage(activeRoom.getSelectedSeats());
+        TicketMenuStage ticketMenu = new TicketMenuStage(activeRoom);
         ticketMenu.initModality(Modality.WINDOW_MODAL);
         ticketMenu.initOwner(stage);
         ticketMenu.setTitle("BUY TICKETS");

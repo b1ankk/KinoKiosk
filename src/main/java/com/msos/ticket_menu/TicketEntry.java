@@ -14,6 +14,9 @@ import java.io.IOException;
 public class TicketEntry extends GridPane
 {
     @FXML
+    private Label roomNumberLabel;
+    
+    @FXML
     private Label priceValueLabel;
     
     @FXML
@@ -31,6 +34,11 @@ public class TicketEntry extends GridPane
     private ObservableList<TicketType> ticketOptionsList;
     
     public TicketEntry(Seat seat, ObservableList<TicketType> ticketOptionsList)
+    {
+        this(seat, ticketOptionsList, 1);
+    }
+    
+    public TicketEntry(Seat seat, ObservableList<TicketType> ticketOptionsList, int roomNumber)
     {
         super();
         this.seat = seat;
@@ -51,6 +59,8 @@ public class TicketEntry extends GridPane
         {
             throw new RuntimeException(e);
         }
+    
+        roomNumberLabel.setText(String.format("Room %d.", roomNumber));
     }
     
     @FXML

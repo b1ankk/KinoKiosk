@@ -32,8 +32,9 @@ public class App extends Application
     {
         this.mainStage = stage;
         
+//        System.setProperty("prism.lcdtext", "false");
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource(UI_PATH));
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/ticket_menu.fxml"));
         Parent root = loader.load();
         KioskController controller = loader.getController();
         controller.setStage(stage);

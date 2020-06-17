@@ -1,3 +1,7 @@
+.seats-back-pane{
+    -fx-background-color: #f0f0f0;
+}
+
 .seatsRoot{
     -fx-border-width: 2px;
     -fx-border-color: lightgray;

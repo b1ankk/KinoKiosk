@@ -9,33 +9,37 @@
 <?import javafx.scene.shape.Rectangle?>
 
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true">
-         <content>
-            <StackPane stylesheets="/styles/seats-view-style.css">
-                <Group>
-                    <VBox alignment="CENTER" fillWidth="false" spacing="32.0" styleClass="seatsRoot">
-                        <children>
-                            <GridPane fx:id="seatsGrid" alignment="CENTER" hgap="2.0" vgap="4.0">
-                                <padding>
-                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                </padding>
-                            </GridPane>
-                            <Rectangle height="16.0" styleClass="screen" width="${seatsGrid.width}">
-                </Rectangle>
-                        </children>
-                        <padding>
-                            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                        </padding>
-                    </VBox>
-            
-                      </Group>
-                <padding>
-                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                </padding>
-            </StackPane>
-         </content>
-      </ScrollPane>
-   </children>
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1" stylesheets="/styles/main-style.css">
+    <children>
+        <ScrollPane fitToHeight="true" fitToWidth="true" >
+            <content>
+                <StackPane stylesheets="/styles/seats-view-style.css" styleClass="seats-back-pane">
+                    <Group>
+                        <VBox alignment="CENTER" fillWidth="false" spacing="32.0"
+                              styleClass="seatsRoot">
+                            <children>
+                                <GridPane fx:id="seatsGrid" alignment="CENTER" hgap="2.0"
+                                          vgap="4.0">
+                                    <padding>
+                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                                    </padding>
+                                </GridPane>
+                                <Rectangle height="16.0" styleClass="screen"
+                                           width="${seatsGrid.width}">
+                                </Rectangle>
+                            </children>
+                            <padding>
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+                            </padding>
+                        </VBox>
+
+                    </Group>
+                    <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+                    </padding>
+                </StackPane>
+            </content>
+        </ScrollPane>
+    </children>
 </fx:root>

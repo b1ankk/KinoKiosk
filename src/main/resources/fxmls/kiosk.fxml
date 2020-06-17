@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <BorderPane fx:id="rootBorderPane" maxHeight="-Infinity" maxWidth="Infinity" minHeight="0.0"
-            minWidth="0.0" prefHeight="680.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.msos.KioskController">
+            minWidth="0.0" prefHeight="680.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.msos.KioskController"
+            stylesheets="/styles/kiosk.css, /styles/main-style.css">
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
+        <MenuBar stylesheets="/styles/menu-bar.css" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -23,8 +17,10 @@
                         <MenuItem mnemonicParsing="false" onAction="#open" text="Open..."/>
                         <MenuItem mnemonicParsing="false" onAction="#save" text="Save"/>
                         <MenuItem mnemonicParsing="false" onAction="#saveAs" text="Save as..."/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
                         <MenuItem mnemonicParsing="false" onAction="#chooseDefault"
                                   text="Choose default..."/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
                         <MenuItem mnemonicParsing="false" onAction="#close" text="Close"/>
                     </items>
                 </Menu>
@@ -32,6 +28,7 @@
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#newRoom" text="New Room"/>
                         <MenuItem mnemonicParsing="false" onAction="#editRoom" text="Edit Room"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
                         <MenuItem mnemonicParsing="false" onAction="#editSeats"
                                   text="Edit Seats' States"/>
                     </items>
@@ -45,30 +42,33 @@
         </MenuBar>
     </top>
     <left>
-        <ListView fx:id="roomsListView" maxHeight="1.7976931348623157E308" prefHeight="200"
-                  prefWidth="180.0"/>
+        <ListView fx:id="roomsListView" focusTraversable="false" maxHeight="1.7976931348623157E308"
+                  prefHeight="200" prefWidth="180.0" styleClass="room-list-view"/>
     </left>
     <center>
 
 
     </center>
     <right>
-        <VBox maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
+        <VBox maxHeight="1.7976931348623157E308" styleClass="ticket-list-box"
+              BorderPane.alignment="CENTER">
             <children>
-                <ListView fx:id="ticketListView" maxHeight="1.7976931348623157E308"
-                          prefHeight="9999999.0" prefWidth="180.0"/>
-                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false"
-                        text="Clear selection" onAction="#clearSelectedTickets"/>
+                <ListView fx:id="ticketListView" focusTraversable="false"
+                          maxHeight="1.7976931348623157E308" prefHeight="99999999"
+                          prefWidth="180.0" styleClass="ticket-list-view"/>
+                <Button focusTraversable="false" maxWidth="1.7976931348623157E308" minHeight="30"
+                        mnemonicParsing="false" onAction="#clearSelectedTickets" prefHeight="30"
+                        text="Clear selection"/>
             </children>
         </VBox>
     </right>
     <bottom>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <Separator prefWidth="200.0"/>
-                <ButtonBar prefHeight="40.0">
+                <ButtonBar prefHeight="40.0" styleClass="kiosk-button-bar">
                     <buttons>
                         <Button fx:id="buyTicketsButton" mnemonicParsing="false"
+                                focusTraversable="false" defaultButton="true"
                                 onAction="#openTicketsMenu" text="Buy tickets"/>
                     </buttons>
                     <padding>

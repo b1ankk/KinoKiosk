@@ -1,0 +1,27 @@
+.room-list-view{
+    -fx-font-size: 16;
+    -fx-font-smoothing-type: gray;
+}
+
+.room-list-view{
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: gray;
+    -fx-background-color: #f0f0f0;
+}
+
+.ticket-list-box{
+    -fx-border-width: 0 0 0 1;
+    -fx-border-color: gray;
+}
+
+
+.kiosk-button-bar{
+    -fx-background-color: #dcdcdc;
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: gray;
+}
+
+.button{
+    -fx-min-height: 30;
+    -fx-pref-height: 30;
+}

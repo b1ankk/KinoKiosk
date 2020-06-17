@@ -1,5 +1,6 @@
 package com.msos.ticket_menu;
 
+import com.msos.Room;
 import com.msos.seat_menu.Seat;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class TicketMenuStage extends Stage
 {
     
-    public TicketMenuStage(ObservableList<Seat> selectedSeats) throws IOException
+    public TicketMenuStage(Room room) throws IOException
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/ticket_menu.fxml"));
         Parent root = loader.load();
@@ -22,7 +23,7 @@ public class TicketMenuStage extends Stage
         setMaxWidth(((VBox) root).getMaxWidth());
     
         TicketMenuController controller = loader.getController();
-        controller.setSelectedSeats(selectedSeats);
+        controller.setSelectedSeats(room.getSelectedSeats(), room.getNumber());
         
         this.setScene(scene);
     }
