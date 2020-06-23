@@ -1,4 +1,4 @@
-package com.msos.seat_menu;
+package com.msos.application.seats.seat;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.BooleanPropertyBase;

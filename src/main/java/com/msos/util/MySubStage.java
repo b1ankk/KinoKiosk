@@ -1,4 +1,4 @@
-package com.msos;
+package com.msos.util;
 
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Modality;

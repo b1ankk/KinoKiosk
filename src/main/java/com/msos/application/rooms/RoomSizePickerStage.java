@@ -1,4 +1,4 @@
-package com.msos;
+package com.msos.application.rooms;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;

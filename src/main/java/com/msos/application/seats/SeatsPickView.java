@@ -1,6 +1,6 @@
-package com.msos.seat_menu;
+package com.msos.application.seats;
 
-import com.msos.Room;
+import com.msos.application.rooms.Room;
 
 public class SeatsPickView extends SeatsView
 {

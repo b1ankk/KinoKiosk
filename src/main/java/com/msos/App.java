@@ -1,6 +1,5 @@
 package com.msos;
 
-import com.msos.security.PasswordManager;
 import com.msos.security.PasswordPromptStage;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
@@ -23,7 +22,7 @@ public class App extends Application
     public static final String DEFAULT_FILE_PATH = ".default" + SAVE_FILE_EXTENSION; // path to a file to be opened by default
     
     private final String UI_PATH = "/fxmls/kiosk.fxml";
-    private final String ICO_PATH = "/icons/ticket_gimp.ico";
+    private final String ICO_PATH = "/icons/ticket_icon.ico";
     
     private Stage mainStage;
     

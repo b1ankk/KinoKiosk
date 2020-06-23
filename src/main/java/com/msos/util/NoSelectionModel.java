@@ -1,4 +1,4 @@
-package com.msos;
+package com.msos.util;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

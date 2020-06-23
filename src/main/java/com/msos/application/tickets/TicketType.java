@@ -1,4 +1,4 @@
-package com.msos.ticket_menu;
+package com.msos.application.tickets;
 
 public enum TicketType
 {

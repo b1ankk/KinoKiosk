@@ -1,4 +1,4 @@
-package com.msos;
+package com.msos.application.rooms;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class RoomEntry extends VBox
     {
         this.number = number;
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/room-entry.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/room_entry.fxml"));
         loader.setRoot(this);
         loader.setController(this);
     

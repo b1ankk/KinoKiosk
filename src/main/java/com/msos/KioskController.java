@@ -1,12 +1,19 @@
 package com.msos;
 
-import com.msos.seat_menu.*;
+import com.msos.application.rooms.Room;
+import com.msos.application.rooms.RoomEntry;
+import com.msos.application.rooms.RoomSizePicker;
+import com.msos.application.rooms.RoomSizePickerStage;
+import com.msos.util.NoSelectionModel;
+import com.msos.application.seats.*;
 import com.msos.security.PasswordManager;
+import com.msos.security.PasswordPrompt;
 import com.msos.security.PasswordPromptStage;
 import com.msos.serialization.Cluster;
 import com.msos.serialization.DefaultSerializer;
-import com.msos.ticket_menu.TicketMenuStage;
-import javafx.application.Platform;
+import com.msos.application.seats.seat.Seat;
+import com.msos.application.seats.seat.SelectedSeatEntry;
+import com.msos.application.tickets.TicketMenuStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -392,6 +399,11 @@ public class KioskController
     @FXML
     private void newRoom()
     {
+        verifyAndDo(this::createNewRoom);
+    }
+    
+    private void createNewRoom()
+    {
         RoomSizePicker.RoomSize size = new RoomSizePicker.RoomSize();
         
         RoomSizePickerStage pickerStage = new RoomSizePickerStage(stage);
@@ -435,6 +447,11 @@ public class KioskController
     
     @FXML
     private void editRoom()
+    {
+        verifyAndDo(this::showRoomEditor);
+    }
+    
+    private void showRoomEditor()
     {
         Room editedRoom = new Room(activeRoom.getRowsCount(), activeRoom.getColumnsCount());
         editedRoom.fill();
@@ -486,15 +503,9 @@ public class KioskController
     @FXML
     private void editSeats()
     {
-        PasswordPromptStage pps = new PasswordPromptStage(
-            stage,
-            () ->
-            {
-                SeatsEditStage editStage = new SeatsEditStage(stage, activeRoom);
-                editStage.show();
-            }
+        verifyAndDo(
+            () -> new SeatsEditStage(stage, activeRoom).show()
         );
-        pps.show();
     }
     
     @FXML
@@ -507,6 +518,15 @@ public class KioskController
             );
         }
     }
+    
+    private void verifyAndDo(PasswordPrompt.OnVerifiedEvent event)
+    {
+        PasswordPromptStage pps = new PasswordPromptStage(
+            stage, event
+        );
+        pps.show();
+    }
+    
     
     public Stage getStage()
     {

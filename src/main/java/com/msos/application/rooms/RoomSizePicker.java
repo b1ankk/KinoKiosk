@@ -1,4 +1,4 @@
-package com.msos;
+package com.msos.application.rooms;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

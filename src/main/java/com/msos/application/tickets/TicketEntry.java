@@ -1,6 +1,6 @@
-package com.msos.ticket_menu;
+package com.msos.application.tickets;
 
-import com.msos.seat_menu.Seat;
+import com.msos.application.seats.seat.Seat;
 import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

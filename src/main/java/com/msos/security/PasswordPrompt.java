@@ -41,7 +41,7 @@ public class PasswordPrompt extends VBox
     {
         super();
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/password-prompt.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/password_prompt.fxml"));
         loader.setRoot(this);
         loader.setController(this);
     

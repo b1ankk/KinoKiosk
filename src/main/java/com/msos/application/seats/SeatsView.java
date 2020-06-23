@@ -1,6 +1,8 @@
-package com.msos.seat_menu;
+package com.msos.application.seats;
 
-import com.msos.Room;
+import com.msos.application.rooms.Room;
+import com.msos.application.seats.seat.Seat;
+import com.msos.application.seats.seat.SeatButton;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

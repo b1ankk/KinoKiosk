@@ -1,8 +1,7 @@
-package com.msos.ticket_menu;
+package com.msos.application.tickets;
 
-import com.msos.NoSelectionModel;
-import com.msos.seat_menu.Seat;
-import javafx.application.Platform;
+import com.msos.util.NoSelectionModel;
+import com.msos.application.seats.seat.Seat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

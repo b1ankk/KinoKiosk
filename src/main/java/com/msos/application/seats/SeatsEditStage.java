@@ -1,7 +1,7 @@
-package com.msos;
+package com.msos.application.seats;
 
-import com.msos.seat_menu.SeatsEditView;
-import com.msos.seat_menu.SeatsView;
+import com.msos.util.MySubStage;
+import com.msos.application.rooms.Room;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 

@@ -1,4 +1,4 @@
-package com.msos.seat_menu;
+package com.msos.application.seats.seat;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
@@ -49,7 +49,7 @@ public class SelectedSeatEntry extends VBox implements Initializable
         this.rowNumber = new ReadOnlyIntegerWrapper(rowNumber);
         this.seatNumber = new ReadOnlyIntegerWrapper(seatNumber);
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/selected-seat-entry.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/selected_seat_entry.fxml"));
         loader.setRoot(this);
         loader.setController(this);
     

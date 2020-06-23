@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxWidth="460" prefHeight="600.0" prefWidth="400.0" spacing="4.0" stylesheets="/styles/main-style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.msos.ticket_menu.TicketMenuController">
+<VBox maxWidth="460" prefHeight="600.0" prefWidth="400.0" spacing="4.0" stylesheets="/styles/main-style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.msos.application.tickets.TicketMenuController">
     <children>
         <ListView fx:id="ticketListView" focusTraversable="false" prefHeight="200.0" VBox.vgrow="SOMETIMES">
             <VBox.margin>

@@ -1,6 +1,6 @@
-package com.msos;
+package com.msos.application.rooms;
 
-import com.msos.seat_menu.Seat;
+import com.msos.application.seats.seat.Seat;
 import com.msos.serialization.RoomPojo;
 import com.msos.serialization.SeatPojo;
 import javafx.beans.property.BooleanProperty;
@@ -137,7 +137,7 @@ public class Room
                     selectedSeats.add(seat);
                 else if (newState != Seat.State.SELECTED && oldState == Seat.State.SELECTED)
                     selectedSeats.remove(seat);
-                System.out.println(selectedSeats);
+//                System.out.println(selectedSeats);
             }
         );
         seats.get(row).set(column, seat);

@@ -3,7 +3,7 @@
     "number" : 1,
     "rows" : 8,
     "columns" : 17,
-    "empty" : false,
+    "empty" : true,
     "seats" : [ [ {
       "state" : "EMPTY",
       "rowNumber" : 0,
@@ -413,15 +413,15 @@
       "rowNumber" : 6,
       "seatNumber" : 10
     }, {
-      "state" : "SELECTED",
+      "state" : "EMPTY",
       "rowNumber" : 6,
       "seatNumber" : 11
     }, {
-      "state" : "SELECTED",
+      "state" : "EMPTY",
       "rowNumber" : 6,
       "seatNumber" : 12
     }, {
-      "state" : "SELECTED",
+      "state" : "EMPTY",
       "rowNumber" : 6,
       "seatNumber" : 13
     }, {
